@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore Destinations | TravelMateX</title>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    
+    <style>
+        .map-header {
+            padding-top: 120px;
+            padding-bottom: 2rem;
+            text-align: center;
+        }
+        #map {
+            height: 600px;
+            width: 100%;
+            border-radius: var(--border-radius-lg);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 1px solid var(--glass-border);
+            z-index: 1; /* Keep map below navbar */
+        }
+        .leaflet-popup-content-wrapper {
+            background: var(--card-bg);
+            color: var(--text-color);
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .leaflet-popup-tip {
+            background: var(--card-bg);
+        }
+        .map-popup h3 {
+            margin: 0 0 5px;
+            color: var(--primary-color);
+            font-family: var(--font-heading);
+        }
+        .map-popup img {
+            width: 100%;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <!-- Navbar -->
+    <nav class="navbar scrolled" id="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="nav-logo">
+                <i class="fas fa-plane-departure"></i>
+                Travel<span>MateX</span>
+            </a>
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="explore.html" class="nav-link active">Explore</a></li>
+                <li class="nav-item"><a href="weather.html" class="nav-link">Weather</a></li>
+                <li class="nav-item"><a href="planner.html" class="nav-link">Budget Planner</a></li>
+                <li class="nav-item"><a href="wishlist.html" class="nav-link">Wishlist</a></li>
+                <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="mobile-toggle" id="mobileToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Interactive Map Section -->
+    <section class="section">
+        <div class="container">
+            <div class="map-header reveal active">
+                <h1 class="section-title">Interactive Map Explorer</h1>
+                <p style="color: var(--text-muted);">Discover popular destinations around the world.</p>
+            </div>
+            
+            <div class="reveal">
+                <div id="map"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 TravelMateX. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/app.js"></script>
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize Map
+            // Centered on Europe roughly
+            const map = L.map('map').setView([20, 0], 2);
+
+            // Add tile layer (OpenStreetMap)
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+
+            // Define locations
+            const locations = [
+                { lat: -8.409518, lng: 115.188919, title: "Bali, Indonesia", desc: "Tropical paradise with beaches and temples.", img: "https://images.unsplash.com/photo-1537996194471-e657df975ab4?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" },
+                { lat: 48.8566, lng: 2.3522, title: "Paris, France", desc: "City of Light, home to the Eiffel Tower.", img: "https://images.unsplash.com/photo-1499856871958-5b9627545d1a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" },
+                { lat: 25.2048, lng: 55.2708, title: "Dubai, UAE", desc: "Luxury, modern architecture, and nightlife.", img: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" },
+                { lat: 15.2993, lng: 74.1240, title: "Goa, India", desc: "Beautiful beaches and vibrant culture.", img: "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" },
+                { lat: 46.8182, lng: 8.2275, title: "Swiss Alps, Switzerland", desc: "Stunning mountains and skiing resorts.", img: "https://images.unsplash.com/photo-1531366936337-7c912a458b07?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" },
+                { lat: 35.6762, lng: 139.6503, title: "Tokyo, Japan", desc: "Bustling city mixing traditional and modern.", img: "https://images.unsplash.com/photo-1503899036084-c55cdd92da26?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" }
+            ];
+
+            // Add Markers
+            locations.forEach(loc => {
+                const marker = L.marker([loc.lat, loc.lng]).addTo(map);
+                
+                const popupContent = `
+                    <div class="map-popup">
+                        <img src="${loc.img}" alt="${loc.title}">
+                        <h3>${loc.title}</h3>
+                        <p>${loc.desc}</p>
+                    </div>
+                `;
+                marker.bindPopup(popupContent);
+            });
+            
+            // Fix map size on container reveal
+            setTimeout(() => {
+                map.invalidateSize();
+            }, 100);
+        });
+    </script>
+</body>
+</html>

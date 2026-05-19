@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Weather | TravelMateX</title>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/weather.css">
+</head>
+<body>
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <!-- Navbar -->
+    <nav class="navbar scrolled" id="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="nav-logo">
+                <i class="fas fa-plane-departure"></i>
+                Travel<span>MateX</span>
+            </a>
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="explore.html" class="nav-link">Explore</a></li>
+                <li class="nav-item"><a href="weather.html" class="nav-link active">Weather</a></li>
+                <li class="nav-item"><a href="planner.html" class="nav-link">Budget Planner</a></li>
+                <li class="nav-item"><a href="wishlist.html" class="nav-link">Wishlist</a></li>
+                <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="mobile-toggle" id="mobileToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Weather Section -->
+    <section class="section">
+        <div class="container weather-container">
+            <div class="weather-header reveal active">
+                <h1 class="section-title">Live Weather Check</h1>
+                <p style="color: var(--text-muted);">Check real-time weather conditions before packing your bags.</p>
+            </div>
+            
+            <div class="search-box reveal">
+                <input type="text" id="cityInput" placeholder="Enter city name (e.g., Paris, Tokyo, New York)...">
+                <button class="search-btn" id="searchBtn"><i class="fas fa-search"></i></button>
+            </div>
+            <p id="errorMsg" class="error-msg">City not found. Please try again.</p>
+            
+            <div class="weather-card reveal" id="weatherCard" style="display: none;">
+                <h2 class="weather-city" id="cityName">London, UK</h2>
+                <p class="weather-date" id="date">Mon, 12 Aug 2026</p>
+                
+                <div class="weather-main">
+                    <img src="" alt="Weather Icon" id="weatherIcon" class="weather-icon">
+                    <div class="weather-temp"><span id="temp">22</span><sup>°C</sup></div>
+                </div>
+                
+                <p class="weather-desc" id="description">Partly Cloudy</p>
+                
+                <div class="weather-details">
+                    <div class="weather-detail-item">
+                        <i class="fas fa-tint"></i>
+                        <span class="detail-label">Humidity</span>
+                        <span class="detail-value" id="humidity">45%</span>
+                    </div>
+                    <div class="weather-detail-item">
+                        <i class="fas fa-wind"></i>
+                        <span class="detail-label">Wind Speed</span>
+                        <span class="detail-value" id="wind">12 km/h</span>
+                    </div>
+                    <div class="weather-detail-item">
+                        <i class="fas fa-compress-arrows-alt"></i>
+                        <span class="detail-label">Pressure</span>
+                        <span class="detail-value" id="pressure">1012 hPa</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 TravelMateX. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/app.js"></script>
+    <script src="js/weather.js"></script>
+</body>
+</html>

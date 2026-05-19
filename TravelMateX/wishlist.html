@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Wishlist | TravelMateX</title>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <!-- Navbar -->
+    <nav class="navbar scrolled" id="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="nav-logo">
+                <i class="fas fa-plane-departure"></i>
+                Travel<span>MateX</span>
+            </a>
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="explore.html" class="nav-link">Explore</a></li>
+                <li class="nav-item"><a href="weather.html" class="nav-link">Weather</a></li>
+                <li class="nav-item"><a href="planner.html" class="nav-link">Budget Planner</a></li>
+                <li class="nav-item"><a href="wishlist.html" class="nav-link active">Wishlist</a></li>
+                <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="mobile-toggle" id="mobileToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Wishlist Section -->
+    <section class="section" style="padding-top: 120px; min-height: 80vh;">
+        <div class="container">
+            <div class="section-title reveal active" style="margin-bottom: 4rem;">
+                <h1>My Travel Wishlist</h1>
+                <p style="color: var(--text-muted); font-size: 1.2rem; margin-top: 1rem;">Saved destinations for your future adventures.</p>
+            </div>
+            
+            <div class="destinations-grid reveal active" id="wishlist-grid">
+                <!-- Wishlist items injected here via JS -->
+            </div>
+            
+            <div id="empty-wishlist" style="display: none; text-align: center; padding: 5rem 0;">
+                <i class="fas fa-heart-broken" style="font-size: 5rem; color: var(--glass-border); margin-bottom: 1rem;"></i>
+                <h2>Your wishlist is empty</h2>
+                <p style="color: var(--text-muted); margin-bottom: 2rem;">Explore destinations and click the heart icon to save them here.</p>
+                <a href="index.html#recommendations" class="btn btn-primary">Explore Destinations</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 TravelMateX. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/app.js"></script>
+    <script src="js/wishlist.js"></script>
+    <script>
+        function renderWishlistPage() {
+            const grid = document.getElementById('wishlist-grid');
+            const emptyState = document.getElementById('empty-wishlist');
+            
+            if (!grid || !emptyState) return;
+            
+            const wishlist = JSON.parse(localStorage.getItem('travel_wishlist')) || [];
+            
+            if (wishlist.length === 0) {
+                grid.style.display = 'none';
+                emptyState.style.display = 'block';
+                return;
+            }
+            
+            emptyState.style.display = 'none';
+            grid.style.display = 'grid';
+            grid.innerHTML = '';
+            
+            wishlist.forEach(dest => {
+                const card = document.createElement('div');
+                card.className = 'dest-card';
+                card.innerHTML = `
+                    <div class="dest-img-container">
+                        <span class="dest-badge">${dest.category.charAt(0).toUpperCase() + dest.category.slice(1)}</span>
+                        <div class="dest-heart active" data-id="${dest.id}">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <img src="${dest.image}" alt="${dest.title}" class="dest-img">
+                    </div>
+                    <div class="dest-info">
+                        <h3 class="dest-title">${dest.title}</h3>
+                        <div class="dest-location"><i class="fas fa-map-marker-alt"></i> ${dest.title}</div>
+                        <div class="dest-price-row">
+                            <span class="dest-price">${dest.price}</span>
+                            <span><i class="fas fa-star" style="color: #fbbf24;"></i> ${dest.rating}</span>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+            
+            // Re-bind heart click events to remove from wishlist
+            const hearts = grid.querySelectorAll('.dest-heart');
+            hearts.forEach(heart => {
+                heart.addEventListener('click', () => {
+                    const id = parseInt(heart.getAttribute('data-id'));
+                    const dest = wishlist.find(d => d.id === id);
+                    if (dest) {
+                        toggleWishlist(dest, heart);
+                    }
+                });
+            });
+        }
+        
+        // Initial render
+        document.addEventListener('DOMContentLoaded', renderWishlistPage);
+    </script>
+</body>
+</html>

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TravelMateX | Smart Travel Planning Platform</title>
+    <meta name="description" content="Premium smart travel planning platform offering modern UI/UX, personalized recommendations, live weather, and budget planning.">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <!-- Loader -->
+    <div class="loader-container" id="loader">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle Dark Mode">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="nav-logo">
+                <i class="fas fa-plane-departure"></i>
+                Travel<span>MateX</span>
+            </a>
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item"><a href="index.html" class="nav-link active">Home</a></li>
+                <li class="nav-item"><a href="explore.html" class="nav-link">Explore</a></li>
+                <li class="nav-item"><a href="weather.html" class="nav-link">Weather</a></li>
+                <li class="nav-item"><a href="planner.html" class="nav-link">Budget Planner</a></li>
+                <li class="nav-item"><a href="wishlist.html" class="nav-link">Wishlist</a></li>
+                <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="mobile-toggle" id="mobileToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-bg">
+            <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="Beautiful travel destination">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="hero-content reveal active">
+            <h1 class="hero-title">Explore The World With <br><span>TravelMateX</span></h1>
+            <p class="hero-subtitle">Experience smart travel planning for your next <span class="typewriter" id="typewriter">Adventure</span></p>
+            <div class="hero-btns">
+                <a href="explore.html" class="btn btn-primary">Explore Now</a>
+                <a href="planner.html" class="btn btn-outline" style="color: white; border-color: white;">Plan Trip</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <div class="container">
+        <div class="stats-section reveal">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3 class="counter" data-target="150">0</h3>
+                    <p>Destinations</p>
+                </div>
+                <div class="stat-item">
+                    <h3 class="counter" data-target="50">0</h3>
+                    <p>Travel Guides</p>
+                </div>
+                <div class="stat-item">
+                    <h3 class="counter" data-target="10">0</h3>
+                    <p>Years Experience</p>
+                </div>
+                <div class="stat-item">
+                    <h3><span class="counter" data-target="99">0</span>%</h3>
+                    <p>Happy Travelers</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recommendations Section -->
+    <section class="section" id="recommendations">
+        <div class="container">
+            <h2 class="section-title reveal">Smart Recommendations</h2>
+            <div class="filter-container reveal" id="recommendation-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="low budget">Low Budget</button>
+                <button class="filter-btn" data-filter="adventure">Adventure</button>
+                <button class="filter-btn" data-filter="luxury">Luxury</button>
+                <button class="filter-btn" data-filter="honeymoon">Honeymoon</button>
+            </div>
+            <div class="destinations-grid reveal" id="recommendation-grid">
+                <!-- Injected via recommendation.js -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section testimonials" id="testimonials">
+        <div class="container">
+            <h2 class="section-title reveal">What Travelers Say</h2>
+            <div class="testimonial-container reveal">
+                <div class="testimonial-track" id="testimonialTrack">
+                    <!-- Slide 1 -->
+                    <div class="testimonial-card">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah J." class="client-img">
+                        <p class="client-text">"TravelMateX made planning our honeymoon to Bali absolutely effortless! The budget planner is incredibly accurate."</p>
+                        <h4 class="client-name">Sarah J.</h4>
+                    </div>
+                    <!-- Slide 2 -->
+                    <div class="testimonial-card">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="David M." class="client-img">
+                        <p class="client-text">"As an adventure seeker, the smart recommendations guided me to Manali. Best trip of my life, perfectly organized."</p>
+                        <h4 class="client-name">David M.</h4>
+                    </div>
+                    <!-- Slide 3 -->
+                    <div class="testimonial-card">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Emily R." class="client-img">
+                        <p class="client-text">"The live weather module saved us from a storm in Thailand. This platform is a must-have for every traveler."</p>
+                        <h4 class="client-name">Emily R.</h4>
+                    </div>
+                </div>
+                <div class="testimonial-controls" id="testimonialControls">
+                    <div class="control-dot active" data-slide="0"></div>
+                    <div class="control-dot" data-slide="1"></div>
+                    <div class="control-dot" data-slide="2"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="section">
+        <div class="container">
+            <div class="newsletter-box reveal">
+                <div class="newsletter-content">
+                    <h2>Get Travel Updates & Offers</h2>
+                    <p>Subscribe to our newsletter and never miss an adventure!</p>
+                    <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Subscribed successfully!');">
+                        <input type="email" class="newsletter-input" placeholder="Enter your email address" required>
+                        <button type="submit" class="newsletter-btn">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>TravelMateX</h3>
+                    <p>Your premium smart travel planning platform. Discover, plan, and execute the perfect journey with our modern tools.</p>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="explore.html">Explore</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Features</h3>
+                    <ul class="footer-links">
+                        <li><a href="planner.html">Budget Planner</a></li>
+                        <li><a href="weather.html">Live Weather</a></li>
+                        <li><a href="wishlist.html">Wishlist</a></li>
+                        <li><a href="explore.html">Interactive Map</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact Info</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Travel Street, NY, USA</li>
+                        <li><i class="fas fa-phone-alt"></i> +1 234 567 8900</li>
+                        <li><i class="fas fa-envelope"></i> hello@travelmatex.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 TravelMateX. All rights reserved. Designed for Modern Travelers.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Core Scripts -->
+    <script src="js/app.js"></script>
+    <script src="js/recommendation.js"></script>
+    <script src="js/wishlist.js"></script> <!-- Included everywhere to manage wishlist badge/state if needed -->
+</body>
+</html>

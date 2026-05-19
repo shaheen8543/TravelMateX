@@ -1,0 +1,144 @@
+/* ===== WEATHER.CSS ===== */
+
+.weather-header {
+    padding-top: 120px;
+    padding-bottom: 2rem;
+    text-align: center;
+}
+
+.weather-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.search-box {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 3rem;
+}
+
+.search-box input {
+    flex: 1;
+    padding: 1rem 1.5rem;
+    border-radius: 30px;
+    border: 1px solid var(--glass-border);
+    background: var(--card-bg);
+    color: var(--text-color);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    outline: none;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.search-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--gradient-1);
+    color: white;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 119, 255, 0.3);
+    transition: var(--transition);
+}
+
+.search-btn:hover {
+    transform: scale(1.05);
+}
+
+.weather-card {
+    background: var(--card-bg);
+    border-radius: var(--border-radius-lg);
+    padding: 3rem 2rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--glass-border);
+    transition: var(--transition);
+}
+
+.weather-card.has-data {
+    background: linear-gradient(135deg, rgba(0,224,255,0.1) 0%, rgba(0,119,255,0.1) 100%), var(--card-bg);
+}
+
+.weather-city {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.weather-date {
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+}
+
+.weather-main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.weather-icon {
+    width: 120px;
+    height: 120px;
+    filter: drop-shadow(0 10px 10px rgba(0,0,0,0.1));
+}
+
+.weather-temp {
+    font-size: 5rem;
+    font-weight: 700;
+    line-height: 1;
+    background: var(--gradient-1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.weather-temp sup {
+    font-size: 2rem;
+}
+
+.weather-desc {
+    font-size: 1.5rem;
+    text-transform: capitalize;
+    color: var(--primary-color);
+    margin-bottom: 2rem;
+}
+
+.weather-details {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    border-top: 1px solid var(--glass-border);
+    padding-top: 2rem;
+}
+
+.weather-detail-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.weather-detail-item i {
+    font-size: 1.5rem;
+    color: var(--secondary-color);
+}
+
+.detail-label {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.detail-value {
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.error-msg {
+    color: #ef4444;
+    margin-top: 1rem;
+    display: none;
+}
